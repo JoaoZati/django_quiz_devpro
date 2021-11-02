@@ -4,4 +4,4 @@ from base.models import Question
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('content', 'available', 'answers', 'right_answer')
+    list_display = ('id', 'content', 'available', 'answers', 'right_answer')
