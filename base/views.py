@@ -5,5 +5,8 @@ def home(request):
     return render(request, 'base/index.html')
 
 
-def questions(request, indice):
-    return render(request, 'base/game.html')
+def questions(request, index):
+    context = {
+        'index_question': index,
+    }
+    return render(request, 'base/game.html', context)
