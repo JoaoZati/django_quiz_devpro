@@ -80,6 +80,14 @@ def ranking(request):
         '-points__sum'
     )[:5])
 
+    podium = 0
+    for i, value in enumerate(best_participants):
+        if i == 0 or value['points__sum'] != best_participants[i-1]['points__sum']:
+            podium += 1
+            value['podium'] = podium
+            continue
+        value['podium'] = podium
+
     context = {
         'participant_points': participant_points,
         'participant_collocation': participant_collocation,

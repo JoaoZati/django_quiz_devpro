@@ -28,27 +28,16 @@
 
                     <br />
                     
-                    <h3>Ranking</h3>
+                    <h3>Ranking 5 Best!</h3>
+
+                    {% for participant in best_participants %}
                     <div class="choice-container">
-                        <p class="choice-prefix">1º</p>
-                        <p class="choice-text">Paula Fernanda Chaves</p>
+                        <p class="choice-prefix">{{ participant.podium }}º</p>
+                        <p class="choice-text">
+                            {{ participant.participant__name }} - {{ participant.points__sum }} Points
+                        </p>
                     </div>
-                    <div class="choice-container">
-                        <p class="choice-prefix">2º</p>
-                        <p class="choice-text">João Pedro Souza</p>
-                    </div>
-                    <div class="choice-container">
-                        <p class="choice-prefix">3º</p>
-                        <p class="choice-text">Felipe Gomes da Silva</p>
-                    </div>
-                    <div class="choice-container">
-                        <p class="choice-prefix">4º</p>
-                        <p class="choice-text">Isa Cristina Lopes</p>
-                    </div>  
-                    <div class="choice-container">
-                        <p class="choice-prefix">5º</p>
-                        <p class="choice-text">Pedro Henrique Lima</p>
-                    </div> 
+                    {% endfor %}
 
                 </div>
             
