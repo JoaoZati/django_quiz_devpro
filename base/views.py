@@ -5,5 +5,5 @@ def home(request):
     return render(request, 'base/index.html')
 
 
-def questions(request):
+def questions(request, indice):
     return render(request, 'base/game.html')
