@@ -25,6 +25,10 @@ def home(request):
 
 
 def questions(request, index):
+    try:
+        participant_id = request.session['participant_id']
+    except KeyError:
+        return redirect('/')
     question = Question.objects.filter(available=True).order_by('id')[index - 1]
     context = {
         'index_question': index,

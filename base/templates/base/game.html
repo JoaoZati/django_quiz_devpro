@@ -23,10 +23,12 @@
                     <h3>{{ question.content }}</h3>
 
                     {% for answer in question.answers.array %}
+                    <form method="post" action="/question/{{ index_question }}">
                         <div class="choice-container">
                             <p class="choice-prefix">{% cycle 'A' 'B' 'C' 'D' %}</p>
                             <p class="choice-text">{{ answer }}</p>
                         </div>
+                    </form>
                     {% endfor %}
 
 <!--            </div>-->
