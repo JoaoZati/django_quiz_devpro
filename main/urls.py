@@ -20,6 +20,7 @@ import base.views as views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),
-    path('questions/<int:index>', views.questions),
+    path('question/<int:index>', views.questions),
+    path('ranking/', views.ranking),
 ]
 

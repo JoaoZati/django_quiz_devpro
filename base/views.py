@@ -10,3 +10,7 @@ def questions(request, index):
         'index_question': index,
     }
     return render(request, 'base/game.html', context)
+
+
+def ranking(request):
+    return render(request, 'base/end.html')
