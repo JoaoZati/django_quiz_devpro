@@ -37,11 +37,11 @@ def questions(request, index):
     }
 
     if request.method == 'POST':
-        answer_index = int(request.POST['answer_index'])
-        if answer_index == question.right_answer:
+        index_answer = int(request.POST['answer_index'])
+        if index_answer == question.right_answer:
             # add answer to db
             return redirect(f'/question/{index + 1}')
-        context['answer_index'] = answer_index
+        context['index_answer'] = index_answer
 
     return render(request, 'base/game.html', context)
 
