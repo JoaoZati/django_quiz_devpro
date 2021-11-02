@@ -1,9 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
+from base.forms import ParticipantForm
 from base.models import Question
+from django.urls import reverse # noqa
 
 
 def home(request):
+    if request.method == 'POST':
+        form = ParticipantForm(request.POST)
+        if form.is_valid():
+            participant = form.save()
+            return redirect('/questions/1')
     return render(request, 'base/index.html')
 
 
