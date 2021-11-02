@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from base.forms import ParticipantForm
-from base.models import Question, Participant
+from base.models import Question, Participant, Answer
 from django.urls import reverse # noqa
 
 
@@ -24,6 +24,7 @@ def home(request):
     return render(request, 'base/index.html')
 
 
+MAX_SCORE = 1000
 def questions(request, index):
     try:
         participant_id = request.session['participant_id']
@@ -44,6 +45,7 @@ def questions(request, index):
         index_answer = int(request.POST['answer_index'])
         if index_answer == question.right_answer:
             # add answer to db
+            Answer(participant_id=participant_id, question=question, points=MAX_SCORE).save()
             return redirect(f'/question/{index + 1}')
         context['index_answer'] = index_answer
 
