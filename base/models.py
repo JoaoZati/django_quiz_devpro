@@ -20,3 +20,15 @@ class Participant(models.Model):
     name = models.CharField(max_length=128)
     email = models.EmailField(unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Answer(models.Model):
+    participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    points = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['participant', 'question'], name='unique_answer')
+        ]
