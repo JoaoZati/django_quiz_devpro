@@ -30,7 +30,11 @@ def questions(request, index):
     except KeyError:
         return redirect('/')
 
-    question = Question.objects.filter(available=True).order_by('id')[index - 1]
+    try:
+        question = Question.objects.filter(available=True).order_by('id')[index - 1]
+    except IndexError:
+        return redirect('/ranking/')
+
     context = {
         'index_question': index,
         'question': question,
