@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from base.forms import ParticipantForm
 from base.models import Question, Participant, Answer
 from django.urls import reverse  # noqa
+from django.db.models.aggregates import Sum
 
 
 def home(request):
@@ -62,4 +63,20 @@ def questions(request, index):
 
 
 def ranking(request):
-    return render(request, 'base/end.html')
+    try:
+        participant_id = request.session['participant_id']
+    except KeyError:
+        return redirect('/')
+
+    dict_points = Answer.objects.filter(participant_id=participant_id).aggregate(Sum('points'))
+    participant_points = dict_points['points__sum']
+
+    participants_bigger_points = Answer.objects.values('participant').annotate(Sum('points')).filter(
+        points__sum__gt=participant_points
+    ).count()
+    participant_collocation = participants_bigger_points + 1
+    context = {
+        'participant_points': participant_points,
+        'participant_collocation': participant_collocation,
+    }
+    return render(request, 'base/end.html', context)

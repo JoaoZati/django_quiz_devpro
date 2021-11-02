@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -21,9 +21,9 @@
                 <div id="game" class="justify-center flex-column animate-bottom">
                     
                     <div class="game-result">
-                        <h2>Você está no</h2>
-                        <h2 class="status-player">2º</h2>
-                        <h2>lugar!</h2>
+                        <h2>You did {{ participant_points }} points </h2>
+                        <h2 class="status-player">{{ participant_collocation }}º</h2>
+                        <h2>Place!</h2>
                     </div>
 
                     <br />
