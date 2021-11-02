@@ -29,11 +29,20 @@ def questions(request, index):
         participant_id = request.session['participant_id']
     except KeyError:
         return redirect('/')
+
     question = Question.objects.filter(available=True).order_by('id')[index - 1]
     context = {
         'index_question': index,
         'question': question,
     }
+
+    if request.method == 'POST':
+        answer_index = int(request.POST['answer_index'])
+        if answer_index == question.right_answer:
+            # add answer to db
+            return redirect(f'/question/{index + 1}')
+        context['answer_index'] = answer_index
+
     return render(request, 'base/game.html', context)
 
 

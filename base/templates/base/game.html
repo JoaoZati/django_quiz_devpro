@@ -24,9 +24,11 @@
 
                     {% for answer in question.answers.array %}
                     <form method="post" action="/question/{{ index_question }}">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ forloop.counter0 }}" name="answer_index">
                         <div class="choice-container">
-                            <p class="choice-prefix">{% cycle 'A' 'B' 'C' 'D' %}</p>
-                            <p class="choice-text">{{ answer }}</p>
+                            <button type="submit" class="choice-prefix">{% cycle 'A' 'B' 'C' 'D' %}</button>
+                            <button type="submit" class="choice-text">{{ answer }}</button>
                         </div>
                     </form>
                     {% endfor %}
