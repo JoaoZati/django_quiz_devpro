@@ -75,8 +75,14 @@ def ranking(request):
         points__sum__gt=participant_points
     ).count()
     participant_collocation = participants_bigger_points + 1
+
+    best_participants = list(Answer.objects.values('participant', 'participant__name').annotate(Sum('points')).order_by(
+        '-points__sum'
+    )[:5])
+
     context = {
         'participant_points': participant_points,
         'participant_collocation': participant_collocation,
+        'best_participants': best_participants,
     }
     return render(request, 'base/end.html', context)
