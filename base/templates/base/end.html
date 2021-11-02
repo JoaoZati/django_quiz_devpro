@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -21,34 +21,23 @@
                 <div id="game" class="justify-center flex-column animate-bottom">
                     
                     <div class="game-result">
-                        <h2>Você está no</h2>
-                        <h2 class="status-player">2º</h2>
-                        <h2>lugar!</h2>
+                        <h2>You did {{ participant_points }} points </h2>
+                        <h2 class="status-player">{{ participant_collocation }}º</h2>
+                        <h2>Place!</h2>
                     </div>
 
                     <br />
                     
-                    <h3>Ranking</h3>
+                    <h3>Ranking 5 Best!</h3>
+
+                    {% for participant in best_participants %}
                     <div class="choice-container">
-                        <p class="choice-prefix">1º</p>
-                        <p class="choice-text">Paula Fernanda Chaves</p>
+                        <p class="choice-prefix">{{ participant.podium }}º</p>
+                        <p class="choice-text">
+                            {{ participant.participant__name }} - {{ participant.points__sum }} Points
+                        </p>
                     </div>
-                    <div class="choice-container">
-                        <p class="choice-prefix">2º</p>
-                        <p class="choice-text">João Pedro Souza</p>
-                    </div>
-                    <div class="choice-container">
-                        <p class="choice-prefix">3º</p>
-                        <p class="choice-text">Felipe Gomes da Silva</p>
-                    </div>
-                    <div class="choice-container">
-                        <p class="choice-prefix">4º</p>
-                        <p class="choice-text">Isa Cristina Lopes</p>
-                    </div>  
-                    <div class="choice-container">
-                        <p class="choice-prefix">5º</p>
-                        <p class="choice-text">Pedro Henrique Lima</p>
-                    </div> 
+                    {% endfor %}
 
                 </div>
             
