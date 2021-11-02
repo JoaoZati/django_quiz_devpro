@@ -14,3 +14,9 @@ class Question(models.Model):
 
     def __str__(self):
         return self.content
+
+
+class Participant(models.Model):
+    name = models.CharField(max_length=128)
+    email = models.EmailField(unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)

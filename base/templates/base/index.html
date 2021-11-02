@@ -14,10 +14,11 @@
             <p class="subtitle-quiz">Quiz</p>
             <p class="subtitle-page">Dev Pro</p>
             <div class="form">
-                <form class="login-form" action="game.html">
-                  <input type="text" placeholder="NAME"/>
-                  <input type="password" placeholder="EMAIL"/>
-                  <button>Enter</button>
+                <form class="login-form" method="post" action="/">
+                  {% csrf_token %}
+                  <input type="text" name="name" placeholder="NAME"/>
+                  <input type="email" name="email" placeholder="EMAIL"/>
+                  <button type="submit">Enter</button>
                 </form>
             </div>
         </div>
