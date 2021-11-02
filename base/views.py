@@ -10,7 +10,9 @@ def home(request):
         form = ParticipantForm(request.POST)
         if form.is_valid():
             participant = form.save()
-            return redirect('/questions/1')
+            return redirect('/question/1')
+        context = {'form': form}
+        return render(request, 'base/index.html', context)
     return render(request, 'base/index.html')
 
 
